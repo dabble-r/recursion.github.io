@@ -401,20 +401,71 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
-};
+
+  var minimizeZeroes = function(array, arr=[]) {
+    //Base
+    if (array.length === 0) {
+      return arr;
+    } else if (arr[arr.length - 1] !== array[0]) {
+      arr.push(array[0]);
+    }
+    //Recursion
+    //arr.push(list[0]);
+    return minimizeZeroes(array.slice(1), arr);
+  };
+
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, arr=[]) {
+  if (array.length === 0) {
+    return arr;
+  } else if (array.length % 2 === 0) {
+    arr.push(Math.abs(array[0]));
+  } else if (array.length % 2 !== 0) {
+    arr.push(-Math.abs(array[0]));
+  }
+  //Recursion
+    //if index is even, push positive item to output Math.abs() 
+      // if index is odd, push negative item -Math.abs()
+        
+  return alternateSign(array.slice(1), arr);
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, string='') {
+  //Base
+  if (str.length === 0) {
+    return string;
+  } else if (str[0] === '0') {
+    string += 'zero';
+  } else if (str[0] === '1') {
+    string += 'one';
+  } else if (str[0] === '2') {
+    string += 'two';
+  } else if (str[0] === '3') {
+    string += 'three';
+  } else if (str[0] === '4') {
+    string += 'four';
+  } else if (str[0] === '5') {
+    string += 'five';
+  } else if (str[0] === '6') {
+    string += 'six';
+  } else if (str[0] === '7') {
+    string += 'seven';
+  } else if (str[0] === '8') {
+    string += 'eight';
+  } else if (str[0] === '9') {
+    string += 'nine';
+  } else {
+    string += str[0];
+  }
+  //Recursion
+  return numToText(str.slice(1), string);
 };
 
 // *** EXTRA CREDIT ***
